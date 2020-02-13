@@ -23,7 +23,7 @@ const Search = ({ search, error, setError, clearError }) => {
         <section className="search">
             <h1 className="search__header">Search dogs by breed</h1>
             <form className="search-form" onSubmit={handleSearch}>
-                <input className="search-form__input" onChange={handleChange} type="text" name="breed" placeholder="breed" />
+                <input className="search-form__input" onChange={handleChange} type="text" name="breed" placeholder="breed" value={breed} />
                 <button className="search-form__button" type="submit">
                     Search
                 </button>
