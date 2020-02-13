@@ -1,24 +1,39 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import axios from 'axios';
+import Search from './components/Search';
+import Pictures from './components/Pictures';
+import './style/main.scss';
 
-function App() {
+const App = () => {
+
+  const [state, setSate] = useState(null);
+  const [error, setError] = useState();
+
+  async function getDogData(breed) {
+    return await axios.get(`https://dog.ceo/api/breed/${breed}/images`);
+  }
+
+  async function search(breed) {
+    try {
+      const dog = await getDogData(breed);
+      setSate(dog.data);
+      clearError();
+    } catch (error) {
+      setError("Sorry, that breed can not be found");
+    }
+
+  }
+
+  function clearError() {
+    setError("");
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <section className="app__inner">
+        <Search search={search} error={error} setError={setError} clearError={clearError} />
+        <Pictures data={state} />
+      </section>
     </div>
   );
 }

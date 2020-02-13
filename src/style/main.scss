@@ -1,0 +1,18 @@
+*{
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0px;
+    padding: 0px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+ button:hover{
+     cursor: pointer;
+ } 
+
+@import './app.scss';
+@import './pictures.scss';
+@import './search.scss';
